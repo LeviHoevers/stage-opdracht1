@@ -1,3 +1,32 @@
+var numberInput = document.getElementById("numberInput");
+var select = document.getElementById("select");
+var submit = document.getElementById("submit");
+var result = document.getElementById("result");
+var error = document.getElementById("error");
+
+var newNumber = 0;
+var userNumber = [""];
+var selectedNumber;
+
+submit.onclick = function(){
+
+  userNumber = numberInput.value;
+  selectedNumber = select.value;
+
+  userNumber = userNumber.split("");
+
+  if(userNumber.length > 4){
+    for(i = userNumber.length - 1; i >= 0; i--){
+      newNumber = newNumber + userNumber[i] * i;
+      console.log(newNumber);
+    }
+  }
+  else{
+    error.innerText = "minimaal 4 cijfers invoeren";
+  }
+}
+
+
 var validNumberExamples = [
   {number: "193769136", modulo: 9 },
   {number: "84076131", modulo: 7 },
