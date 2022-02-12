@@ -6,8 +6,9 @@ var error = document.getElementById("error");
 
 submit.onclick = function(){
   var newNumber = 0;
-  var userNumber = [""];
+  var userNumber = [];
   var selectedNumber;
+  var number1 = 1;
 
   userNumber = numberInput.value;
   selectedNumber = select.value;
@@ -15,9 +16,11 @@ submit.onclick = function(){
   userNumber = userNumber.split("");
 
   if(userNumber.length >= 4){
-    for(i = userNumber.length - 1; i >= 0; i--){
-      newNumber = newNumber + userNumber[i] * i;
-      console.log(i)
+    for(i = userNumber.length-1; i >= 0; i--){
+      newNumber = newNumber + (userNumber[i] * number1);
+      console.log(number1)
+      console.log()
+      number1++
     }
     validateNumber(newNumber, selectedNumber);
   }
