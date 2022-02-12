@@ -4,28 +4,37 @@ var submit = document.getElementById("submit");
 var result = document.getElementById("result");
 var error = document.getElementById("error");
 
-var newNumber = 0;
-var userNumber = [""];
-var selectedNumber;
-
 submit.onclick = function(){
+  var newNumber = 0;
+  var userNumber = [""];
+  var selectedNumber;
 
   userNumber = numberInput.value;
   selectedNumber = select.value;
 
   userNumber = userNumber.split("");
 
-  if(userNumber.length > 4){
+  if(userNumber.length >= 4){
     for(i = userNumber.length - 1; i >= 0; i--){
       newNumber = newNumber + userNumber[i] * i;
-      console.log(newNumber);
+      console.log(i)
     }
+    validateNumber(newNumber, selectedNumber);
   }
   else{
     error.innerText = "minimaal 4 cijfers invoeren";
   }
 }
 
+function validateNumber(number, modulo){
+    number = number % modulo;
+    if(number == 0){
+      result.innerText = "valid";
+    }
+    else{
+      result.innerText = "not valid";
+    }
+}
 
 var validNumberExamples = [
   {number: "193769136", modulo: 9 },
