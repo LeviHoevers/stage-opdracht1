@@ -15,14 +15,6 @@ submit.onclick = function(){
 
   userNumber = userNumber.split("");
   number1 = userNumber.length;
-  
-  for(i = userNumber.length-1; i >= 0; i--){
-    if(isNaN(userNumber[i])){
-      userNumber.splice(i, 1);
-    }
-  }
-
-  console.log(userNumber);
 
   if(userNumber.length >= 6){
     error.innerText = "";
@@ -48,6 +40,9 @@ submit.onclick = function(){
   else if(userNumber.length > 14){
     error.innerText = "Maximaal 14 cijfers invoeren.";
   }
+
+
+  console.log(userNumber);
 }
 
 function validateNumber(number, modulo){
