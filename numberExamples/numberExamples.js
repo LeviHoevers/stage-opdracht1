@@ -14,11 +14,11 @@ submit.onclick = function(){
   selectedNumber = select.value;
 
   userNumber = userNumber.split("");
-
-  for(i = 0; i <= userNumber.length; i++){
-    var index = i++;
-    if(!Number.isInteger(userNumber[index])){
-      userNumber.splice(userNumber[index], 1);
+  number1 = userNumber.length;
+  
+  for(i = userNumber.length-1; i >= 0; i--){
+    if(isNaN(userNumber[i])){
+      userNumber.splice(i, 1);
     }
   }
 
@@ -26,9 +26,14 @@ submit.onclick = function(){
 
   if(userNumber.length >= 6){
     error.innerText = "";
-      for(i = userNumber.length-1; i >= 0; i--){
-      newNumber = newNumber + (userNumber[i] * weight);
-      weight++
+    for(i = userNumber.length-1; i >= 0; i--){
+      if(isNaN(userNumber[i])){
+        userNumber.splice(i, 1);
+      }
+      else{
+        newNumber = newNumber + (userNumber[i] * weight);
+        weight++
+      }
     }
     if(validateNumber(newNumber, selectedNumber)){
       result.innerText = "valid";
