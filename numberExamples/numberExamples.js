@@ -8,34 +8,50 @@ submit.onclick = function(){
   var newNumber = 0;
   var userNumber = [];
   var selectedNumber;
-  var number1 = 1;
+  var weight = 1;
 
   userNumber = numberInput.value;
   selectedNumber = select.value;
 
   userNumber = userNumber.split("");
 
-  if(userNumber.length >= 4){
-    for(i = userNumber.length-1; i >= 0; i--){
-      newNumber = newNumber + (userNumber[i] * number1);
-      console.log(number1)
-      console.log()
-      number1++
+  for(i = 0; i <= userNumber.length; i++){
+    var index = i++;
+    if(!Number.isInteger(userNumber[index])){
+      userNumber.splice(userNumber[index], 1);
     }
-    validateNumber(newNumber, selectedNumber);
   }
-  else{
-    error.innerText = "minimaal 4 cijfers invoeren";
+
+  console.log(userNumber);
+
+  if(userNumber.length >= 6){
+    error.innerText = "";
+      for(i = userNumber.length-1; i >= 0; i--){
+      newNumber = newNumber + (userNumber[i] * weight);
+      weight++
+    }
+    if(validateNumber(newNumber, selectedNumber)){
+      result.innerText = "valid";
+    }
+    else{
+      result.innerText = "not valid";
+    }
+  }
+  else if(userNumber.length < 6){
+    error.innerText = "Minimaal 6 cijfers invoeren.";
+  }
+  else if(userNumber.length > 14){
+    error.innerText = "Maximaal 14 cijfers invoeren.";
   }
 }
 
 function validateNumber(number, modulo){
     number = number % modulo;
     if(number == 0){
-      result.innerText = "valid";
+      return true
     }
     else{
-      result.innerText = "not valid";
+      return false
     }
 }
 
